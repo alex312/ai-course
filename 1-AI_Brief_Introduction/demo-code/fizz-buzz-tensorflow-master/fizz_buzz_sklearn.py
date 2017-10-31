@@ -1,20 +1,29 @@
+#!/usr/bin/env python
+
+#pylint: disable=C0103
+
+"""演示使用随机森林算法的机器学习"""
+#from sklearn.preprocessing import LabelBinarizer
+#from sklearn.linear_model import LogisticRegression
+#from sklearn import cross_validation
+#import pickle
 import numpy as np
-import tensorflow as tf
-from sklearn.preprocessing import LabelBinarizer
-from sklearn.linear_model import LogisticRegression
-from sklearn import cross_validation
-import numpy as np
-import pickle
 from sklearn.ensemble import RandomForestClassifier as RFC
 
 NUM_DIGITS = 10
 
 # Represent each input by an array of its binary digits.
 def binary_encode(i, num_digits):
+    """
+    将输入的数值表示成二进制位的数组
+    """
     return np.array([i >> d & 1 for d in range(num_digits)])
 
 # One-hot encode the desired outputs: [number, "fizz", "buzz", "fizzbuzz"]
 def fizz_buzz_encode(i):
+    """
+    定义数据特征所对应的输出
+    """
     if   i % 15 == 0: return np.array([0, 0, 0, 1])
     elif i % 5  == 0: return np.array([0, 0, 1, 0])
     elif i % 3  == 0: return np.array([0, 1, 0, 0])

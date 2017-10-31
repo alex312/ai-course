@@ -110,3 +110,9 @@ venv.bak/
 *.pptx
 *.exe
 *.npz
+
+# pylint
+pylint.conf
+
+# vscode
+.vscode/
