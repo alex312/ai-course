@@ -1,0 +1,51 @@
+Traceback (most recent call last):
+  File "/home/alex/python/.env/pyenv/versions/3.5.4/lib/python3.5/urllib/request.py", line 1254, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers)
+  File "/home/alex/python/.env/pyenv/versions/3.5.4/lib/python3.5/http/client.py", line 1107, in request
+    self._send_request(method, url, body, headers)
+  File "/home/alex/python/.env/pyenv/versions/3.5.4/lib/python3.5/http/client.py", line 1152, in _send_request
+    self.endheaders(body)
+  File "/home/alex/python/.env/pyenv/versions/3.5.4/lib/python3.5/http/client.py", line 1103, in endheaders
+    self._send_output(message_body)
+  File "/home/alex/python/.env/pyenv/versions/3.5.4/lib/python3.5/http/client.py", line 934, in _send_output
+    self.send(msg)
+  File "/home/alex/python/.env/pyenv/versions/3.5.4/lib/python3.5/http/client.py", line 877, in send
+    self.connect()
+  File "/home/alex/python/.env/pyenv/versions/3.5.4/lib/python3.5/http/client.py", line 1253, in connect
+    super().connect()
+  File "/home/alex/python/.env/pyenv/versions/3.5.4/lib/python3.5/http/client.py", line 849, in connect
+    (self.host,self.port), self.timeout, self.source_address)
+  File "/home/alex/python/.env/pyenv/versions/3.5.4/lib/python3.5/socket.py", line 712, in create_connection
+    raise err
+  File "/home/alex/python/.env/pyenv/versions/3.5.4/lib/python3.5/socket.py", line 703, in create_connection
+    sock.connect(sa)
+OSError: [Errno 101] Network is unreachable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/alex/python/ai-course/2-Math_And_Analysis/zuoye/MNIST/LMS.py", line 47, in <module>
+    mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
+  File "/home/alex/python/.env/pyenv/versions/venv3.5.4/lib/python3.5/site-packages/tensorflow/contrib/learn/python/learn/datasets/mnist.py", line 240, in read_data_sets
+    source_url + TRAIN_IMAGES)
+  File "/home/alex/python/.env/pyenv/versions/venv3.5.4/lib/python3.5/site-packages/tensorflow/contrib/learn/python/learn/datasets/base.py", line 208, in maybe_download
+    temp_file_name, _ = urlretrieve_with_retry(source_url)
+  File "/home/alex/python/.env/pyenv/versions/venv3.5.4/lib/python3.5/site-packages/tensorflow/contrib/learn/python/learn/datasets/base.py", line 165, in wrapped_fn
+    return fn(*args, **kwargs)
+  File "/home/alex/python/.env/pyenv/versions/venv3.5.4/lib/python3.5/site-packages/tensorflow/contrib/learn/python/learn/datasets/base.py", line 190, in urlretrieve_with_retry
+    return urllib.request.urlretrieve(url, filename)
+  File "/home/alex/python/.env/pyenv/versions/3.5.4/lib/python3.5/urllib/request.py", line 188, in urlretrieve
+    with contextlib.closing(urlopen(url, data)) as fp:
+  File "/home/alex/python/.env/pyenv/versions/3.5.4/lib/python3.5/urllib/request.py", line 163, in urlopen
+    return opener.open(url, data, timeout)
+  File "/home/alex/python/.env/pyenv/versions/3.5.4/lib/python3.5/urllib/request.py", line 466, in open
+    response = self._open(req, data)
+  File "/home/alex/python/.env/pyenv/versions/3.5.4/lib/python3.5/urllib/request.py", line 484, in _open
+    '_open', req)
+  File "/home/alex/python/.env/pyenv/versions/3.5.4/lib/python3.5/urllib/request.py", line 444, in _call_chain
+    result = func(*args)
+  File "/home/alex/python/.env/pyenv/versions/3.5.4/lib/python3.5/urllib/request.py", line 1297, in https_open
+    context=self._context, check_hostname=self._check_hostname)
+  File "/home/alex/python/.env/pyenv/versions/3.5.4/lib/python3.5/urllib/request.py", line 1256, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 101] Network is unreachable>
