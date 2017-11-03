@@ -24,7 +24,7 @@ class LMS():
 
     def __init__(self, shape=[2, 1], init=1):
         self.shape = shape
-        #### 这里为什要使用高斯分布初始化权值和偏差？ 可不可以用其他的方法？
+        # 这里为什要使用高斯分布初始化权值和偏差？ 可不可以用其他的方法？
         # 使用高斯分布随机初始化一个权值矩阵作为训练前的初始权值
         self.W = np.random.normal(loc=0.0, scale=0.1, size=shape) * init
         self.resv = self.W
@@ -41,7 +41,7 @@ class LMS():
         """
         nu = np.dot(data, self.W) + np.tile(self.b, (np.shape(vali)[0], 1))
 
-        ####这里的激活函数以及激活函数的导数是做什么用的？
+        # 这里的激活函数以及激活函数的导数是做什么用的？
         para = (vali - self.active(nu,
                                    function="sigmoid")) * self.active(nu,
                                                                       function="sigmoid",
@@ -61,10 +61,15 @@ class LMS():
 
 lms = LMS([784, 10])
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
+wrongimg = None
+wronglabel=None
+
+rightimg = None
+rightlabel= None
 for itr in range(200):
     # batch_xs 训练样本，batch_ys 期望输出，每次取60行
     batch_xs, batch_ys = mnist.train.next_batch(60)
-    lms.train(batch_xs, batch_ys, 0.3)
+    lms.train(batch_xs, batch_ys, 1.5)
     if(itr % 20 == 0):
         # 取测试集输入
         x = mnist.test.images
@@ -75,13 +80,20 @@ for itr in range(200):
         # print(np.max(lms.W))
         cont = 0
         num = len(y)
-
+        i = 0
         for itra, itrb in zip(y, label):
             la = np.where(itra == np.max(itra))[0][0]
             lb = np.where(itrb == np.max(itrb))[0][0]
             if(la == lb):
                 cont += 1
+                rightimg = x[i,:]
+                rightlabel=la
+            else:
+                wrongimg = x[i,:]
+                wronglabel=la
+            i += 1
         print("Itr:{} Acc:{}".format(itr, cont / num))
+
 
 mpl.style.use('seaborn-darkgrid')
 batch_xs, batch_ys = mnist.train.next_batch(300)
@@ -98,14 +110,14 @@ for itrx in range(3):
                 plt.yticks([])
                 break
 
+# plt.matshow(np.reshape(wrongimg, [28, 28]))
+# plt.title("label:%d" % wronglabel)
+# plt.show()
+
+# plt.matshow(np.reshape(rightimg, [28, 28]))
+# plt.title("label:%d" % rightlabel)
+# plt.show()
+
 plt.matshow(np.reshape(lms.W[:, 2], [28, 28]), cmap=plt.get_cmap("PiYG"))
 plt.show()
 #np.savez("../result/models/weight-1_7.npz", W=lms.W, b=lms.b)
-
-
-
-
-
-
-
-
