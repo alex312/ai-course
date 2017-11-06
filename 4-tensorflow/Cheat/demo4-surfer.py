@@ -6,7 +6,7 @@ import tensorflow.contrib.slim as slim
 import numpy as np
 
 
-data = pd.read_csv("data/creditcard.csv")
+data = pd.read_csv("4-tensorflow/data/creditcard.csv")
 class1 = data[data.Class==0]
 class2 = data[data.Class==1]
 print(len(class1))

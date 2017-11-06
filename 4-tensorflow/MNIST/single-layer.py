@@ -6,7 +6,7 @@ import tensorflow as tf
 mnist = input_data.read_data_sets("data/", one_hot=True)
 #构建网络模型
 #x，label分别为图形数据和标签数据
-x = tf.placeholder(tf.float32, [None, 784])
+x = tf.placeholder(tf.float32, [None, 784])  # 表示创建一个二维矩阵，但是axis=0的长度不确定，使用None表示占位
 label = tf.placeholder(tf.float32, [None, 10])
 #构建单层网络中的权值和偏置
 W = tf.Variable(tf.zeros([784, 10]))
@@ -27,7 +27,7 @@ sess.run(tf.global_variables_initializer())
 #迭代过程
 train_writer = tf.summary.FileWriter("mnist-logdir", sess.graph)
 for itr in range(1000):
-    batch_xs, batch_ys = mnist.train.next_batch(100)
+    batch_xs, batch_ys = mnist.train.next_batch(100) # 随机获取100个样本
     sess.run(train_step, feed_dict={x: batch_xs, label: batch_ys})
     if itr % 10 == 0:
         print("step:%6d  accuracy:"%itr, sess.run(accuracy, feed_dict={x: mnist.test.images,

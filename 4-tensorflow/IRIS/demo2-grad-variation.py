@@ -16,7 +16,7 @@ def variable_summaries(var, name="layer"):
         tf.summary.scalar('min', tf.reduce_min(var))
         tf.summary.histogram('histogram', var)
 #读取数据
-data = pd.read_csv("data/iris.data.csv")
+data = pd.read_csv("4-tensorflow/data/iris.data.csv")
 #获取种类
 c_name = set(data.name.values)
 print(c_name)
@@ -47,15 +47,15 @@ x = tf.placeholder(tf.float32, [None, 4], name="input_x")
 label = tf.placeholder(tf.float32, [None, 3], name="input_y")
 # 对于sigmoid激活函数而言，效果可能并不理想
 # 这里用了tensorflow的高层次api，简化我们的操作
-net = slim.fully_connected(x, 4, activation_fn=tf.nn.sigmoid, 
+net = slim.fully_connected(x, 4, activation_fn=tf.nn.relu, 
                               scope='full1', reuse=False)
-net = slim.fully_connected(net, 8, activation_fn=tf.nn.sigmoid, 
+net = slim.fully_connected(net, 8, activation_fn=tf.nn.relu, 
                               scope='full2', reuse=False)
-net = slim.fully_connected(net, 8, activation_fn=tf.nn.sigmoid, 
+net = slim.fully_connected(net, 8, activation_fn=tf.nn.relu, 
                               scope='full3', reuse=False)
-net = slim.fully_connected(net, 4, activation_fn=tf.nn.sigmoid, 
+net = slim.fully_connected(net, 4, activation_fn=tf.nn.relu, 
                               scope='full4', reuse=False)
-y = slim.fully_connected(net, 3, activation_fn=tf.nn.sigmoid, 
+y = slim.fully_connected(net, 3, activation_fn=tf.nn.relu, 
                               scope='full5', reuse=False)
 #定义损失函数
 loss = tf.reduce_mean(tf.square(y-label))
@@ -89,7 +89,7 @@ for idx, itr_g in enumerate(var_list_b):
 train_step = optimizer.apply_gradients(gradient_w+gradient_b)
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
-train_writer = tf.summary.FileWriter("logdir", sess.graph)
+train_writer = tf.summary.FileWriter("logdir-gdv", sess.graph)
 merged = tf.summary.merge_all()
 #这里就是迭代过程了
 for itr in range(600):

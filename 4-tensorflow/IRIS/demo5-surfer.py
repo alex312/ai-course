@@ -18,7 +18,7 @@ def variable_summaries(var, name="layer"):
         tf.summary.scalar('min', tf.reduce_min(var))
         tf.summary.histogram('histogram', var)
 
-data = pd.read_csv("data/iris.data.csv")
+data = pd.read_csv("4-tensorflow/data/iris.data.csv")
 c_name = set(data.name.values)
 print(c_name)
 iris_label = np.zeros([len(data.name.values),len(c_name)])

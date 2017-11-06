@@ -28,14 +28,14 @@ sess.run(tf.global_variables_initializer())
 #定义log输出位置，用于tensorboard观察。
 train_writer = tf.summary.FileWriter("mnist-logdir", sess.graph)
 saver = tf.train.Saver()
-#saver.restore(sess, tf.train.latest_checkpoint('model'))
+saver.restore(sess, tf.train.latest_checkpoint('model'))  # 加载保存在指定文件夹中的模型参数和迭代训练的次数
 for itr in range(1000):
     batch_xs, batch_ys = mnist.train.next_batch(100)
     sess.run(train_step, feed_dict={x: batch_xs, label: batch_ys})
     if itr % 10 == 0:
         print("step:%6d  accuracy:"%itr, sess.run(accuracy, feed_dict={x: mnist.test.images,
                                         label: mnist.test.labels}))
-        saver.save(sess, os.path.join(os.getcwd(), 'model','mnist'), global_step=itr)
+        saver.save(sess, os.path.join(os.getcwd(), 'model','mnist'), global_step=itr)  # 保存训练得到的参数和迭代训练次数到指定文件夹中
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib as mpl

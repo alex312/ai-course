@@ -5,13 +5,14 @@ A = tf.placeholder(dtype=tf.float32, shape=[2, 2])
 B = tf.placeholder(dtype=tf.float64, shape=[2, 2])
 b = tf.placeholder(dtype=tf.float64, shape=[2])
 
+# 矩阵类型转换，将矩阵中的所有元素转换为指定类型
 A = tf.cast(A, tf.float64)
 #最常用到的矩阵乘法
 A_dot_B = tf.matmul(A, B)
 
 #矩阵连接操作，在大型神经网络中用的比较多
-AA0 = tf.concat([A, A], axis=0)
-AA1 = tf.concat([A, A], axis=1)
+AA0 = tf.concat([A, A], axis=0)# 行链接
+AA1 = tf.concat([A, A], axis=1)# 列链接
 #初始化
 init = tf.global_variables_initializer()
 sess = tf.Session()

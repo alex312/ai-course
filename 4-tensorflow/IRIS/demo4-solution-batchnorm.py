@@ -23,8 +23,12 @@ c_name = set(data.name.values)
 print(c_name)
 iris_label = np.zeros([len(data.name.values),len(c_name)])
 iris_data = data.values[:, :-1]
+
+
 iris_data = iris_data-np.mean(iris_data, axis=0)
+# 求
 iris_data = iris_data/np.max(iris_data, axis=0)
+
 train_data=[]
 train_data_label=[]
 test_data=[]

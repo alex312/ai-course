@@ -21,14 +21,15 @@ train_step = optimizer.minimize(loss)
 sess = tf.Session()
 init = tf.global_variables_initializer()
 sess.run(init)
-#dts = np.load("data/basic-data.npz")
-#tx = dts['x']
-#ty = dts['y']
+dts = np.load("4-tensorflow/data/basic-data.npz")
+tx = dts['x']
+ty = dts['y']
 print(dts['true'])
 
 #产生训练样本
-tx = np.random.random([1000, 1])
-ty = tx + 1
+# tx = np.random.random([10000, 1])
+# ty = tx + 1
+train_writer = tf.summary.FileWriter("line-logdir",sess.graph)
 for itr, (x_in, y_in) in enumerate(zip(tx, ty)):
     #x_in = np.random.random([1])
     #y_in = 2 * x_in + 1

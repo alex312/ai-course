@@ -11,7 +11,7 @@ x = tf.placeholder(tf.float32, [None, 784])
 label = tf.placeholder(tf.float32, [None, 10])
 #构建单层网络中的权值和偏置
 W = tf.Variable(tf.zeros([784, 10]))
-tf.summary.histogram('W', W)
+tf.summary.histogram('W', W) 
 b = tf.Variable(tf.zeros([10]))
 #本例中为sigmoid激活函数
 y = tf.nn.sigmoid(tf.matmul(x, W) + b)
